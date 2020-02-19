@@ -120,5 +120,5 @@ clean:
 
 alchemy: alchemy.c $(GSLC_CORE) $(GSLC_SRCS)
 	@echo [Building $@]
-	@$(CC) $(CFLAGS) -o $@ ex01_lnx_basic.c $(GSLC_CORE) $(GSLC_SRCS) $(LDFLAGS) -lSDL2 $(LDLIBS) -I . -I ../../src
+	@$(CC) $(CFLAGS) -o $@ alchemy.c $(GSLC_CORE) $(GSLC_SRCS) $(LDFLAGS) -lSDL2 $(LDLIBS) -I . -I ../../src
 
