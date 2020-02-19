@@ -16,6 +16,8 @@
 #include "GUIslice.h"
 #include "GUIslice_drv.h"
 
+bool m_bQuit = false
+
 // Include any extended elements
 //<Includes !Start!>
 //<Includes !End!>
