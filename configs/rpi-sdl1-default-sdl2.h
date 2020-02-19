@@ -163,9 +163,9 @@ extern "C" {
   #define GSLC_USE_FLOAT        1   // 1=Use floating pt library, 0=Fixed-point lookup tables
 
   // Define default device paths for framebuffer & touchscreen
-  #define GSLC_DEV_FB       "/dev/fb1"
-  #define GSLC_DEV_TOUCH    "/dev/input/touchscreen"
-  #define GSLC_DEV_VID_DRV  "fbcon"
+  #define GSLC_DEV_FB       "/dev/fb0"
+  #define GSLC_DEV_TOUCH    ""
+  #define GSLC_DEV_VID_DRV  ""
 
   // Enable SDL startup workaround? (1 to enable, 0 to disable)
   #define DRV_SDL_FIX_START     0
