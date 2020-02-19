@@ -1117,7 +1117,7 @@ void gslc_DrvReportInfoPre()
     }
     #endif
     if (bDriverOk) {
-      GSLC_DEBUG_PRINT("DBG: - OK\n");
+      // GSLC_DEBUG_PRINT("DBG: - OK\n");
     } else {
       GSLC_DEBUG_PRINT("DBG: - Failed [%s]\n",SDL_GetError());
     }

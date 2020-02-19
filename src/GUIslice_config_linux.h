@@ -52,7 +52,7 @@ extern "C" {
 
 // Specify the graphics driver library
 // - Uncomment one of the following graphics drivers
-#define DRV_DISP_SDL1                // LINUX: SDL 1.2 library
+#define DRV_DISP_SDL2                // LINUX: SDL 1.2 library
 //#define DRV_DISP_SDL2              // LINUX: SDL 2.0 library
 
 
@@ -61,7 +61,7 @@ extern "C" {
 // - Uncomment one of the following touchscreen drivers
 //#define DRV_TOUCH_NONE          // No touchscreen support
 //#define DRV_TOUCH_SDL           // LINUX: Use SDL touch driver
-#define DRV_TOUCH_TSLIB           // LINUX: Use tslib touch driver
+#define DRV_TOUCH_NONE           // LINUX: Use tslib touch driver
 
 
 
