@@ -39,6 +39,7 @@
 #define FONT_DROID_MONO18 "/usr/share/fonts/truetype/droid/DroidSansMono.ttf"
 //<Fonts !End!>
 
+
 // ------------------------------------------------
 // Defines for resources
 // ------------------------------------------------
@@ -54,6 +55,8 @@ enum {EN_JOYSTICK_BTN,E_ELEM_TEXT1,E_ELEM_TEXTBOX1,E_TXTSCROLL1};
 // Must use separate enum for fonts with MAX_FONT at end to use gslc_FontSet.
 enum {E_DROID_MONO18,E_DROID_MONO8,MAX_FONT};
 //<Enum !End!>
+
+bool        m_bQuit = false;
 
 // ------------------------------------------------
 // Instantiate the GUI
