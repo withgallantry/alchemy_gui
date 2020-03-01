@@ -1,5 +1,5 @@
 //<File !Start!>
-// FILE: [Alchemy Interface.c]
+// FILE: [Interface Menu.c]
 // Created by GUIslice Builder version: [0.13.b014]
 //
 // GUIslice Builder Generated File
@@ -27,6 +27,7 @@ bool m_bQuit = false
 // ------------------------------------------------
 #define MAX_PATH  255
 //<PathStorage !Start!>
+char m_strImgPath3[MAX_PATH];
 //<PathStorage !End!>
 
 // ------------------------------------------------
@@ -40,6 +41,7 @@ bool m_bQuit = false
 // Defines for resources
 // ------------------------------------------------
 //<Resources !Start!>
+#define IMG_BACKGROUND "/background.bmp"
 //<Resources !End!>
 
 // ------------------------------------------------
@@ -47,7 +49,7 @@ bool m_bQuit = false
 // ------------------------------------------------
 //<Enum !Start!>
 enum {E_PG_MAIN};
-enum {E_ELEM_BTN1,E_ELEM_BTN2};
+enum {EN_JOYSTICK_BTN,E_ELEM_BTN3,E_ELEM_BTN4,E_ELEM_BTN6,E_ELEM_IMAGE3};
 // Must use separate enum for fonts with MAX_FONT at end to use gslc_FontSet.
 enum {E_DROID_MONO8,MAX_FONT};
 //<Enum !End!>
@@ -62,7 +64,7 @@ enum {E_DROID_MONO8,MAX_FONT};
 //<ElementDefines !Start!>
 #define MAX_PAGE                1
 
-#define MAX_ELEM_PG_MAIN 2                                          // # Elems total on page
+#define MAX_ELEM_PG_MAIN 5                                          // # Elems total on page
 #define MAX_ELEM_PG_MAIN_RAM MAX_ELEM_PG_MAIN // # Elems in RAM
 //<ElementDefines !End!>
 
@@ -133,13 +135,19 @@ bool CbBtnCommon(void* pvGui,void *pvElemRef,gslc_teTouch eTouch,int16_t nX,int1
     // From the element's ID we can determine which button was pressed.
     switch (pElem->nId) {
 //<Button Enums !Start!>
-      case E_ELEM_BTN1:
-        //TODO- Replace with button handling code
-        break;
-      case E_ELEM_BTN2:
+      case EN_JOYSTICK_BTN:
         //TODO- Replace with button handling code
         break;
 
+      case E_ELEM_BTN3:
+        //TODO- Replace with button handling code
+        break;
+      case E_ELEM_BTN4:
+        //TODO- Replace with button handling code
+        break;
+      case E_ELEM_BTN6:
+        //TODO- Replace with button handling code
+        break;
 //<Button Enums !End!>
       default:
         break;
@@ -157,8 +165,26 @@ bool CbBtnCommon(void* pvGui,void *pvElemRef,gslc_teTouch eTouch,int16_t nX,int1
 //<Listbox Callback !End!>
 //<Draw Callback !Start!>
 //<Draw Callback !End!>
-//<Slider Callback !Start!>
-//<Slider Callback !End!>
+
+// Callback function for when a slider's position has been updated
+bool CbSlidePos(void* pvGui,void* pvElemRef,int16_t nPos)
+{
+  gslc_tsGui*     pGui      = (gslc_tsGui*)(pvGui);
+  gslc_tsElemRef* pElemRef  = (gslc_tsElemRef*)(pvElemRef);
+  gslc_tsElem*    pElem     = pElemRef->pElem;
+  int16_t         nVal;
+
+  // From the element's ID we can determine which slider was updated.
+  switch (pElem->nId) {
+//<Slider Enums !Start!>
+
+//<Slider Enums !End!>
+    default:
+      break;
+  }
+
+  return true;
+}
 //<Tick Callback !Start!>
 //<Tick Callback !End!>
 
@@ -183,13 +209,38 @@ bool InitGUI(char *strPath)
   // -----------------------------------
   // PAGE: E_PG_MAIN
 
-  // create E_ELEM_BTN1 button with text label
-  pElemRef = gslc_ElemCreateBtnTxt(&m_gui,E_ELEM_BTN1,E_PG_MAIN,
-    (gslc_tsRect){220,47,220,40},(char*)"Toggle Wifi",0,E_DROID_MONO8,&CbBtnCommon);
+  // Create E_ELEM_IMAGE3 using Image $<IMAGE_DEFINE> $<IMAGE_FROM_SRC>
+  pElemRef = gslc_ElemCreateImg(&m_gui,E_ELEM_IMAGE3,E_PG_MAIN,(gslc_tsRect){0,0,640,480},
+    gslc_GetImageFromFile(IMG_BACKGROUND,GSLC_IMGREF_FMT_BMP24));
+  gslc_ElemSetFillEn(&m_gui,pElemRef,false);
 
-  // create E_ELEM_BTN2 button with text label
-  pElemRef = gslc_ElemCreateBtnTxt(&m_gui,E_ELEM_BTN2,E_PG_MAIN,
-    (gslc_tsRect){220,113,220,40},(char*)"Toggle Audio Privacy",0,E_DROID_MONO8,&CbBtnCommon);
+  // create EN_JOYSTICK_BTN button with text label
+  pElemRef = gslc_ElemCreateBtnTxt(&m_gui,EN_JOYSTICK_BTN,E_PG_MAIN,
+    (gslc_tsRect){210,115,220,40},(char*)"Enable Joystick",0,E_DROID_MONO8,&CbBtnCommon);
+  gslc_ElemSetTxtCol(&m_gui,pElemRef,GSLC_COL_WHITE);
+  gslc_ElemSetCol(&m_gui,pElemRef,GSLC_COL_BLUE_DK2,((gslc_tsColor){0,87,255}),GSLC_COL_GREEN_DK4);
+  gslc_ElemSetRoundEn(&m_gui, pElemRef, true);
+
+  // create E_ELEM_BTN3 button with text label
+  pElemRef = gslc_ElemCreateBtnTxt(&m_gui,E_ELEM_BTN3,E_PG_MAIN,
+    (gslc_tsRect){210,170,220,40},(char*)"Disable WiFi",0,E_DROID_MONO8,&CbBtnCommon);
+  gslc_ElemSetTxtCol(&m_gui,pElemRef,GSLC_COL_WHITE);
+  gslc_ElemSetCol(&m_gui,pElemRef,GSLC_COL_BLUE_DK2,((gslc_tsColor){0,87,255}),GSLC_COL_GREEN_DK4);
+  gslc_ElemSetRoundEn(&m_gui, pElemRef, true);
+
+  // create E_ELEM_BTN4 button with text label
+  pElemRef = gslc_ElemCreateBtnTxt(&m_gui,E_ELEM_BTN4,E_PG_MAIN,
+    (gslc_tsRect){210,225,220,40},(char*)"Enable HUD",0,E_DROID_MONO8,&CbBtnCommon);
+  gslc_ElemSetTxtCol(&m_gui,pElemRef,GSLC_COL_WHITE);
+  gslc_ElemSetCol(&m_gui,pElemRef,GSLC_COL_BLUE_DK2,((gslc_tsColor){0,87,255}),GSLC_COL_GREEN_DK4);
+  gslc_ElemSetRoundEn(&m_gui, pElemRef, true);
+
+  // create E_ELEM_BTN6 button with text label
+  pElemRef = gslc_ElemCreateBtnTxt(&m_gui,E_ELEM_BTN6,E_PG_MAIN,
+    (gslc_tsRect){220,393,200,40},(char*)"Exit",0,E_DROID_MONO8,&CbBtnCommon);
+  gslc_ElemSetTxtCol(&m_gui,pElemRef,GSLC_COL_WHITE);
+  gslc_ElemSetCol(&m_gui,pElemRef,GSLC_COL_BLUE_DK2,GSLC_COL_GRAY_DK1,GSLC_COL_BLUE_LT2);
+  gslc_ElemSetRoundEn(&m_gui, pElemRef, true);
 //<InitGUI !End!>
 
   return true;
@@ -255,4 +306,3 @@ int main( int argc, char* args[] )
 
   return 0;
 }
-
